@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBVideoLocadoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GENRETB">
+    <Key>
+      <PropertyRef Name="IDGENRE" />
+    </Key>
+    <Property Name="IDGENRE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAMEGENRE" Type="varchar" MaxLength="50" />
+    <Property Name="CREATIONDATE" Type="date" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="LOCATIONTB">
+    <Key>
+      <PropertyRef Name="IDLOCATION" />
+    </Key>
+    <Property Name="IDLOCATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="15" />
+    <Property Name="CREATIONDATE" Type="date" />
+  </EntityType>
+  <EntityType Name="LOGINTB">
+    <Key>
+      <PropertyRef Name="IDLOGIN" />
+    </Key>
+    <Property Name="IDLOGIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USEREMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="USERPASSWORD" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MOVIETB">
+    <Key>
+      <PropertyRef Name="IDMOVIE" />
+    </Key>
+    <Property Name="IDMOVIE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAMEMOVIE" Type="varchar" MaxLength="50" />
+    <Property Name="CREATIONDATE" Type="date" />
+    <Property Name="ACTIVO" Type="bit" />
+    <Property Name="IDGENRE" Type="int" />
+  </EntityType>
+  <EntityType Name="MOVIEXLOCATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDLOCATION" Type="int" />
+    <Property Name="IDMOVIE" Type="int" />
+  </EntityType>
+  <Association Name="FK__MOVIETB__IDGENRE__4D94879B">
+    <End Role="GENRETB" Type="Self.GENRETB" Multiplicity="0..1" />
+    <End Role="MOVIETB" Type="Self.MOVIETB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENRETB">
+        <PropertyRef Name="IDGENRE" />
+      </Principal>
+      <Dependent Role="MOVIETB">
+        <PropertyRef Name="IDGENRE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIEXLOC__IDLOC__02FC7413">
+    <End Role="LOCATIONTB" Type="Self.LOCATIONTB" Multiplicity="0..1" />
+    <End Role="MOVIEXLOCATION" Type="Self.MOVIEXLOCATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCATIONTB">
+        <PropertyRef Name="IDLOCATION" />
+      </Principal>
+      <Dependent Role="MOVIEXLOCATION">
+        <PropertyRef Name="IDLOCATION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIEXLOC__IDMOV__03F0984C">
+    <End Role="MOVIETB" Type="Self.MOVIETB" Multiplicity="0..1" />
+    <End Role="MOVIEXLOCATION" Type="Self.MOVIEXLOCATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIETB">
+        <PropertyRef Name="IDMOVIE" />
+      </Principal>
+      <Dependent Role="MOVIEXLOCATION">
+        <PropertyRef Name="IDMOVIE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBVideoLocadoraModelStoreContainer">
+    <EntitySet Name="GENRETB" EntityType="Self.GENRETB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOCATIONTB" EntityType="Self.LOCATIONTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOGINTB" EntityType="Self.LOGINTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOVIETB" EntityType="Self.MOVIETB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOVIEXLOCATION" EntityType="Self.MOVIEXLOCATION" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MOVIETB__IDGENRE__4D94879B" Association="Self.FK__MOVIETB__IDGENRE__4D94879B">
+      <End Role="GENRETB" EntitySet="GENRETB" />
+      <End Role="MOVIETB" EntitySet="MOVIETB" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIEXLOC__IDLOC__02FC7413" Association="Self.FK__MOVIEXLOC__IDLOC__02FC7413">
+      <End Role="LOCATIONTB" EntitySet="LOCATIONTB" />
+      <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIEXLOC__IDMOV__03F0984C" Association="Self.FK__MOVIEXLOC__IDMOV__03F0984C">
+      <End Role="MOVIETB" EntitySet="MOVIETB" />
+      <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

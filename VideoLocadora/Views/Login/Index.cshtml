@@ -1,0 +1,68 @@
+﻿@model VideoLocadora.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+
+<style>
+    .btn-sm {
+        height: 25px;
+        margin-left: 3px;
+    }
+</style>
+
+@using (Html.BeginForm("Validate", "Login", FormMethod.Post))
+{
+    <nav class="navbar navbar-default" style="background-color: #F5845E;">
+        <div class="container-fluid" style="margin: 11px">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right:10px;">@ViewBag.Error</li>
+                <li>
+                    @Html.LabelFor(x => x.Email)
+                    @Html.TextBoxFor(x => x.Email)
+                </li>
+                <li>
+                    @Html.LabelFor(x => x.Password)
+                    @Html.PasswordFor(x => x.Password)
+                </li>
+                <li><input type="submit" value="Login" class="btn btn-default btn-sm" /></li>
+            </ul>
+        </div>
+    </nav>
+}
+
+
+@using (Html.BeginForm("Insert", "Login", FormMethod.Get))
+{
+    <div class="container">
+        <div style="margin: 100px">
+            <div class"container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1><b>Seja bem vindo!</b></h1>
+                        <div>
+                            <img src="~/Content/Images/roloFilme.png" height="300" width="300">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1><b> Cadastre-se :)</b></h1>
+                        <div style="margin-top: 100px">
+                            @Html.ValidationSummary(true)
+                            <label for="email"> E-mail:</label>
+                            <input type="text" name="email" class="form-control"/ >
+                            <br / >
+                            <label for="password"> Senha:</label>
+                            <input type="password" name="password" class="form-control"/ >
+                            <br />
+                            <input type="submit" value="Cadastrar" class="btn btn-default" / >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

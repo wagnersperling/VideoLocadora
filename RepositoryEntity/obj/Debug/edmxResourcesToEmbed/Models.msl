@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBVideoLocadoraModelStoreContainer" CdmEntityContainer="DBVideoLocadoraEntities">
+    <EntitySetMapping Name="GENRETB">
+      <EntityTypeMapping TypeName="DBVideoLocadoraModel.GENRETB">
+        <MappingFragment StoreEntitySet="GENRETB">
+          <ScalarProperty Name="IDGENRE" ColumnName="IDGENRE" />
+          <ScalarProperty Name="NAMEGENRE" ColumnName="NAMEGENRE" />
+          <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIETB">
+      <EntityTypeMapping TypeName="DBVideoLocadoraModel.MOVIETB">
+        <MappingFragment StoreEntitySet="MOVIETB">
+          <ScalarProperty Name="IDGENRE" ColumnName="IDGENRE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+          <ScalarProperty Name="NAMEMOVIE" ColumnName="NAMEMOVIE" />
+          <ScalarProperty Name="IDMOVIE" ColumnName="IDMOVIE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGINTB">
+      <EntityTypeMapping TypeName="DBVideoLocadoraModel.LOGINTB">
+        <MappingFragment StoreEntitySet="LOGINTB">
+          <ScalarProperty Name="USERPASSWORD" ColumnName="USERPASSWORD" />
+          <ScalarProperty Name="USEREMAIL" ColumnName="USEREMAIL" />
+          <ScalarProperty Name="IDLOGIN" ColumnName="IDLOGIN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOCATIONTB">
+      <EntityTypeMapping TypeName="DBVideoLocadoraModel.LOCATIONTB">
+        <MappingFragment StoreEntitySet="LOCATIONTB">
+          <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="IDLOCATION" ColumnName="IDLOCATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIEXLOCATION">
+      <EntityTypeMapping TypeName="DBVideoLocadoraModel.MOVIEXLOCATION">
+        <MappingFragment StoreEntitySet="MOVIEXLOCATION">
+          <ScalarProperty Name="IDMOVIE" ColumnName="IDMOVIE" />
+          <ScalarProperty Name="IDLOCATION" ColumnName="IDLOCATION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

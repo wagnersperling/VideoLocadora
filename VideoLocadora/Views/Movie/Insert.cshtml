@@ -1,0 +1,52 @@
+﻿@model VideoLocadora.Models.Movie
+
+@{
+    ViewBag.Title = "Cadastro de filme";
+}
+
+@using (Html.BeginForm("Insert", "Movie", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1><b>Formulário de Filme</b></h1>
+
+                <div hidden>
+                    @Html.LabelFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Id)
+                </div>
+
+                <div>
+                    @Html.LabelFor(x => x.Name)
+                    @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+
+                <div>
+                    <label for="creationDate">Data de criação</label>
+                    @if (Model.CreationDate.Year < 1500)
+                    {
+                        <input type="date" value=@DateTime.Now.ToString("yyyy-MM-dd") name="creationDate" class="form-control" />
+                    }
+                    else
+                    {
+                        <input type="date" value=@Model.CreationDate.ToString("yyyy-MM-dd") name="creationDate" class="form-control" />
+                    }
+                </div>
+
+                <div>
+                    @Html.LabelFor(x => x.IdGenre)
+                    @Html.DropDownListFor(x => x.IdGenre, new SelectList(ViewBag.Genre, "Id", "Name"),"selecione", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.IdGenre)
+                </div>
+
+                <div>
+                    @Html.LabelFor(x => x.Active)
+                    @Html.CheckBoxFor(x => x.Active, new { @class = "checkbox" })
+                </div>
+
+                <input type="submit" value="Cadastrar" class="btn btn-default" style="margin-top: 10px" />
+            </div>
+        </div>
+    </div>
+}

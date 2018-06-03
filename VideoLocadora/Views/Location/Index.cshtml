@@ -1,0 +1,61 @@
+﻿@model List<VideoLocadora.Models.Location>
+
+@{
+    ViewBag.Title = "Locação";
+}
+
+@using (Html.BeginForm("Delete", "Location", FormMethod.Get))
+{
+    <div class="container">
+        <h2>Lista de locações</h2>
+        @Html.ValidationSummary(true)
+        <table class="table">
+            <tbody>
+                <tr>
+                <tr>
+                    <th>
+                        <label>CPF</label>
+                    </th>
+                    <th>
+                        <label>Data de criação</label>
+                    </th>
+                    <th>
+                        <label>Alterar</label>
+                    </th>
+                    <th>
+                        <label>Excluir</label>
+                    </th>
+                </tr>
+
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <label for="@item.CPF">@item.CPF </label>
+                            </td>
+                            <td>
+                                <label for="@item.CreationDate">@item.CreationDate.ToString("dd-MM-yyyy") </label>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Alterar", "Update", "Location", new { @Id = item.Id }, null)
+                            </td>
+                            <td>
+                                <input type="checkbox"
+                                       name="Id"
+                                       value="@item.Id" id="@item.Id" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+        @Html.ActionLink("Cadastro de Locação", "Insert", "Location", new { @class = "btn btn-default" })
+        <input type="submit" value="Excluir" class="btn btn-default" />
+    </div>
+}
+
+

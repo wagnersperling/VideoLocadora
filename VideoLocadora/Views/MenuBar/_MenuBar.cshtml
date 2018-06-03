@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-default" style="background-color: #F5845E;">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Filmes", "Index", "Movie")</li>
+                <li>@Html.ActionLink("Genero", "Index", "Genre")</li>
+                <li>@Html.ActionLink("Locação", "Index", "Location")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Sair", "Logout", "Login")</li>
+            </ul>
+        </div>
+    </nav>
+
+    @RenderBody()
+</body>
+</html>
+
+
+

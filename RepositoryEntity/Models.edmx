@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBVideoLocadoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GENRETB">
+          <Key>
+            <PropertyRef Name="IDGENRE" />
+          </Key>
+          <Property Name="IDGENRE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAMEGENRE" Type="varchar" MaxLength="50" />
+          <Property Name="CREATIONDATE" Type="date" />
+          <Property Name="ACTIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="LOCATIONTB">
+          <Key>
+            <PropertyRef Name="IDLOCATION" />
+          </Key>
+          <Property Name="IDLOCATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="15" />
+          <Property Name="CREATIONDATE" Type="date" />
+        </EntityType>
+        <EntityType Name="LOGINTB">
+          <Key>
+            <PropertyRef Name="IDLOGIN" />
+          </Key>
+          <Property Name="IDLOGIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USEREMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="USERPASSWORD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MOVIETB">
+          <Key>
+            <PropertyRef Name="IDMOVIE" />
+          </Key>
+          <Property Name="IDMOVIE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAMEMOVIE" Type="varchar" MaxLength="50" />
+          <Property Name="CREATIONDATE" Type="date" />
+          <Property Name="ACTIVO" Type="bit" />
+          <Property Name="IDGENRE" Type="int" />
+        </EntityType>
+        <EntityType Name="MOVIEXLOCATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDLOCATION" Type="int" />
+          <Property Name="IDMOVIE" Type="int" />
+        </EntityType>
+        <Association Name="FK__MOVIETB__IDGENRE__4D94879B">
+          <End Role="GENRETB" Type="Self.GENRETB" Multiplicity="0..1" />
+          <End Role="MOVIETB" Type="Self.MOVIETB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENRETB">
+              <PropertyRef Name="IDGENRE" />
+            </Principal>
+            <Dependent Role="MOVIETB">
+              <PropertyRef Name="IDGENRE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MOVIEXLOC__IDLOC__02FC7413">
+          <End Role="LOCATIONTB" Type="Self.LOCATIONTB" Multiplicity="0..1" />
+          <End Role="MOVIEXLOCATION" Type="Self.MOVIEXLOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATIONTB">
+              <PropertyRef Name="IDLOCATION" />
+            </Principal>
+            <Dependent Role="MOVIEXLOCATION">
+              <PropertyRef Name="IDLOCATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MOVIEXLOC__IDMOV__03F0984C">
+          <End Role="MOVIETB" Type="Self.MOVIETB" Multiplicity="0..1" />
+          <End Role="MOVIEXLOCATION" Type="Self.MOVIEXLOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVIETB">
+              <PropertyRef Name="IDMOVIE" />
+            </Principal>
+            <Dependent Role="MOVIEXLOCATION">
+              <PropertyRef Name="IDMOVIE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBVideoLocadoraModelStoreContainer">
+          <EntitySet Name="GENRETB" EntityType="Self.GENRETB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOCATIONTB" EntityType="Self.LOCATIONTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGINTB" EntityType="Self.LOGINTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIETB" EntityType="Self.MOVIETB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIEXLOCATION" EntityType="Self.MOVIEXLOCATION" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MOVIETB__IDGENRE__4D94879B" Association="Self.FK__MOVIETB__IDGENRE__4D94879B">
+            <End Role="GENRETB" EntitySet="GENRETB" />
+            <End Role="MOVIETB" EntitySet="MOVIETB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MOVIEXLOC__IDLOC__02FC7413" Association="Self.FK__MOVIEXLOC__IDLOC__02FC7413">
+            <End Role="LOCATIONTB" EntitySet="LOCATIONTB" />
+            <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MOVIEXLOC__IDMOV__03F0984C" Association="Self.FK__MOVIEXLOC__IDMOV__03F0984C">
+            <End Role="MOVIETB" EntitySet="MOVIETB" />
+            <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBVideoLocadoraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GENRETB">
+          <Key>
+            <PropertyRef Name="IDGENRE" />
+          </Key>
+          <Property Name="IDGENRE" Type="Int32" Nullable="false" />
+          <Property Name="NAMEGENRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Precision="0" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <NavigationProperty Name="MOVIETB" Relationship="DBVideoLocadoraModel.FK__MOVIETB__IDGENRE__4D94879B" FromRole="GENRETB" ToRole="MOVIETB" />
+        </EntityType>
+        <EntityContainer Name="DBVideoLocadoraEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GENRETB" EntityType="Self.GENRETB" />
+          <EntitySet Name="MOVIETB" EntityType="DBVideoLocadoraModel.MOVIETB" />
+          <AssociationSet Name="FK__MOVIETB__IDGENRE__4D94879B" Association="DBVideoLocadoraModel.FK__MOVIETB__IDGENRE__4D94879B">
+            <End Role="GENRETB" EntitySet="GENRETB" />
+            <End Role="MOVIETB" EntitySet="MOVIETB" />
+          </AssociationSet>
+          <EntitySet Name="LOGINTB" EntityType="DBVideoLocadoraModel.LOGINTB" />
+          <EntitySet Name="LOCATIONTB" EntityType="DBVideoLocadoraModel.LOCATIONTB" />
+          <EntitySet Name="MOVIEXLOCATION" EntityType="DBVideoLocadoraModel.MOVIEXLOCATION" />
+          <AssociationSet Name="FK__MOVIEXLOC__IDLOC__02FC7413" Association="DBVideoLocadoraModel.FK__MOVIEXLOC__IDLOC__02FC7413">
+            <End Role="LOCATIONTB" EntitySet="LOCATIONTB" />
+            <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MOVIEXLOC__IDMOV__03F0984C" Association="DBVideoLocadoraModel.FK__MOVIEXLOC__IDMOV__03F0984C">
+            <End Role="MOVIETB" EntitySet="MOVIETB" />
+            <End Role="MOVIEXLOCATION" EntitySet="MOVIEXLOCATION" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MOVIETB">
+          <Key>
+            <PropertyRef Name="IDMOVIE" />
+          </Key>
+          <Property Name="IDMOVIE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAMEMOVIE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Precision="0" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <Property Name="IDGENRE" Type="Int32" />
+          <NavigationProperty Name="GENRETB" Relationship="DBVideoLocadoraModel.FK__MOVIETB__IDGENRE__4D94879B" FromRole="MOVIETB" ToRole="GENRETB" />
+          <NavigationProperty Name="MOVIEXLOCATION" Relationship="DBVideoLocadoraModel.FK__MOVIEXLOC__IDMOV__03F0984C" FromRole="MOVIETB" ToRole="MOVIEXLOCATION" />
+        </EntityType>
+        <Association Name="FK__MOVIETB__IDGENRE__4D94879B">
+          <End Type="DBVideoLocadoraModel.GENRETB" Role="GENRETB" Multiplicity="0..1" />
+          <End Type="DBVideoLocadoraModel.MOVIETB" Role="MOVIETB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENRETB">
+              <PropertyRef Name="IDGENRE" />
+            </Principal>
+            <Dependent Role="MOVIETB">
+              <PropertyRef Name="IDGENRE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LOGINTB">
+          <Key>
+            <PropertyRef Name="IDLOGIN" />
+          </Key>
+          <Property Name="IDLOGIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USEREMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LOCATIONTB">
+          <Key>
+            <PropertyRef Name="IDLOCATION" />
+          </Key>
+          <Property Name="IDLOCATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MOVIEXLOCATION" Relationship="DBVideoLocadoraModel.FK__MOVIEXLOC__IDLOC__02FC7413" FromRole="LOCATIONTB" ToRole="MOVIEXLOCATION" />
+        </EntityType>
+        <EntityType Name="MOVIEXLOCATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDLOCATION" Type="Int32" />
+          <Property Name="IDMOVIE" Type="Int32" />
+          <NavigationProperty Name="LOCATIONTB" Relationship="DBVideoLocadoraModel.FK__MOVIEXLOC__IDLOC__02FC7413" FromRole="MOVIEXLOCATION" ToRole="LOCATIONTB" />
+          <NavigationProperty Name="MOVIETB" Relationship="DBVideoLocadoraModel.FK__MOVIEXLOC__IDMOV__03F0984C" FromRole="MOVIEXLOCATION" ToRole="MOVIETB" />
+        </EntityType>
+        <Association Name="FK__MOVIEXLOC__IDLOC__02FC7413">
+          <End Type="DBVideoLocadoraModel.LOCATIONTB" Role="LOCATIONTB" Multiplicity="0..1" />
+          <End Type="DBVideoLocadoraModel.MOVIEXLOCATION" Role="MOVIEXLOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATIONTB">
+              <PropertyRef Name="IDLOCATION" />
+            </Principal>
+            <Dependent Role="MOVIEXLOCATION">
+              <PropertyRef Name="IDLOCATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MOVIEXLOC__IDMOV__03F0984C">
+          <End Type="DBVideoLocadoraModel.MOVIETB" Role="MOVIETB" Multiplicity="0..1" />
+          <End Type="DBVideoLocadoraModel.MOVIEXLOCATION" Role="MOVIEXLOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVIETB">
+              <PropertyRef Name="IDMOVIE" />
+            </Principal>
+            <Dependent Role="MOVIEXLOCATION">
+              <PropertyRef Name="IDMOVIE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBVideoLocadoraModelStoreContainer" CdmEntityContainer="DBVideoLocadoraEntities">
+          <EntitySetMapping Name="GENRETB">
+            <EntityTypeMapping TypeName="DBVideoLocadoraModel.GENRETB">
+              <MappingFragment StoreEntitySet="GENRETB">
+                <ScalarProperty Name="IDGENRE" ColumnName="IDGENRE" />
+                <ScalarProperty Name="NAMEGENRE" ColumnName="NAMEGENRE" />
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIETB">
+            <EntityTypeMapping TypeName="DBVideoLocadoraModel.MOVIETB">
+              <MappingFragment StoreEntitySet="MOVIETB">
+                <ScalarProperty Name="IDGENRE" ColumnName="IDGENRE" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+                <ScalarProperty Name="NAMEMOVIE" ColumnName="NAMEMOVIE" />
+                <ScalarProperty Name="IDMOVIE" ColumnName="IDMOVIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGINTB">
+            <EntityTypeMapping TypeName="DBVideoLocadoraModel.LOGINTB">
+              <MappingFragment StoreEntitySet="LOGINTB">
+                <ScalarProperty Name="USERPASSWORD" ColumnName="USERPASSWORD" />
+                <ScalarProperty Name="USEREMAIL" ColumnName="USEREMAIL" />
+                <ScalarProperty Name="IDLOGIN" ColumnName="IDLOGIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCATIONTB">
+            <EntityTypeMapping TypeName="DBVideoLocadoraModel.LOCATIONTB">
+              <MappingFragment StoreEntitySet="LOCATIONTB">
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="IDLOCATION" ColumnName="IDLOCATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIEXLOCATION">
+            <EntityTypeMapping TypeName="DBVideoLocadoraModel.MOVIEXLOCATION">
+              <MappingFragment StoreEntitySet="MOVIEXLOCATION">
+                <ScalarProperty Name="IDMOVIE" ColumnName="IDMOVIE" />
+                <ScalarProperty Name="IDLOCATION" ColumnName="IDLOCATION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="6fc9e26f791c4ad1abcba0cf36c0d526" Name="Diagram1">
+        <EntityTypeShape EntityType="DBVideoLocadoraModel.GENRETB" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBVideoLocadoraModel.MOVIETB" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBVideoLocadoraModel.LOGINTB" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBVideoLocadoraModel.LOCATIONTB" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBVideoLocadoraModel.MOVIEXLOCATION" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="DBVideoLocadoraModel.FK__MOVIETB__IDGENRE__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVideoLocadoraModel.FK__MOVIEXLOC__IDLOC__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVideoLocadoraModel.FK__MOVIEXLOC__IDMOV__03F0984C" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,77 @@
+﻿@model VideoLocadora.Models.Location
+
+
+@{
+    ViewBag.Title = "Cadastro de Locação";
+}
+
+@using (Html.BeginForm("InsertLocation", "Location", FormMethod.Get))
+{
+    <div class="container">
+        @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-xs-6">
+                <h1><b>Formulário de locação</b></h1>
+
+                <div hidden>
+                    @Html.LabelFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Id)
+                </div>
+
+                <div>
+                    @Html.LabelFor(x => x.CPF)
+                    @Html.EditorFor(x => x.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(x => x.CPF)
+                </div>
+
+                <div>
+                    <label for="creationDate">Data de criação</label>
+                    @if (Model.CreationDate.Year < 1500)
+                    {
+                        <input type="date" value=@DateTime.Now.ToString("yyyy-MM-dd") name="creationDate" class="form-control" />
+                    }
+                    else
+                    {
+                        <input type="date" value=@Model.CreationDate.ToString("yyyy-MM-dd") name="creationDate" class="form-control" />
+                    }
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <h1>Filmes</h1>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                        <tr>
+                            <th>
+                                <label>Nome</label>
+                            </th>
+                            <th>
+                                <label>Selecione</label>
+                            </th>
+                        </tr>
+
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model.MovieList)
+                            {
+                                <tr>
+                                    <td>
+                                        <label for="@item.Name">@item.Name </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox"
+                                               name="IdMovies"
+                                               value="@item.Id" id="@item.Id" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <input type="submit" value="Cadastrar" class="btn btn-default" style="margin-top: 10px" />
+    </div>
+
+}
